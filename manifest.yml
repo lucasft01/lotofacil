@@ -1,0 +1,14 @@
+---
+applications:
+- name: lotofacil
+  framework: node
+  runtime: node08
+  memory: 128M
+  instances: 1
+  url: lotofacil.${target-base}
+  path: .
+  services:
+    redis:
+      vendor: redis
+      version: '2.6'
+      tier: free
