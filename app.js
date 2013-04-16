@@ -5,6 +5,7 @@
 
 var express = require('express'),
   routes = require('./routes'),
+  lotofacil = require('./routes/lotofacil'),
   api = require('./routes/api');
 
 var app = module.exports = express();
@@ -33,9 +34,12 @@ app.configure('production', function(){
 app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
 
+
+
 // JSON API
 
 app.get('/api/name', api.name);
+app.get('/api/teste', lotofacil.readFSLotoFacil);
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);
