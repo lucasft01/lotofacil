@@ -1,6 +1,6 @@
 
 
-exports.repeat = function() {
+exports.repeat = function(config) {
 
 	this.repeticao = function(_mapResult){
 		var tmp = [];
@@ -18,7 +18,8 @@ exports.repeat = function() {
 
 		tmp.push('02-03-05-06-08-09-10-11-12-14-15-17-18-19-23');
 		tmp.push('02-03-04-06-08-10-11-12-14-15-17-18-23-24-25');
-
+		tmp.push('02-03-05-06-08-09-10-11-12-14-15-17-18-19-23');
+		tmp.push('02-04-05-06-09-10-12-13-15-16-18-19-20-23-24');
 
 		tmp.sort();
 		this.isExist(tmp);
@@ -39,6 +40,20 @@ exports.repeat = function() {
 	        out.push(item); 
 	    } 	    
 	    this.repeticoes = out; 
+
+	};
+
+	this.cron = function() {
+		var $this = this;
+		new config.cron('*/1 * * * * *', function(){
+		    config.client.lpop('lotofacil-fila-repeat', function(err, d) {
+				if(d){
+					//console.log('consumindo file person '+d)
+					$this.repeticao($this.mapResult);
+					config.client.set('lotofacil-repeat', JSON.stringify($this.repeticoes));
+				}
+			});
+		}, null, true, "");
 	};
 
 };

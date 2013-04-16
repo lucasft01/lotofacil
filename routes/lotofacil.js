@@ -2,18 +2,28 @@
 var fs = require('fs');
 var $ = require('jquery');
 var repeat = require('./lotofacil-repeat.js').repeat;
+
+var redis = require("redis"),
+    client = redis.createClient(),
+    cron = require("cron").CronJob;
 /*
  * Serve JSON to our AngularJS client
  */
 
 var lotofacil = {};
+var config = {};
+config.client = client;
+config.cron = cron;
 
-var _objRepeat = new repeat();
+var _objRepeat = new repeat(config);
+
+//inicia escuta de fila redis
+_objRepeat.cron();
 
 exports.readFSLotoFacil = function (req, res) { 
 	var data = fs.readFileSync('lotofacil/D_LOTFAC.HTM');	
 	carregar(data.toString());
-	res.json(_objRepeat.repeticoes);
+	res.json({});
 };
 
 var carregar = function(data){
@@ -68,18 +78,7 @@ var carregar = function(data){
 		
 		mapResult.push(obj);		
 	}
+	_objRepeat.mapResult = mapResult;
+	client.lpush('lotofacil-fila-repeat', new Date().getTime());
 	
-	_objRepeat.repeticao(mapResult);
-	
-}
-
-
-
-
-lotofacil.view = function(_mapResult){
-	for(var i = 0 ; i < _mapResult.length ; i++){
-		console.log(_mapResult[i]);
-	}
 };
-
-
