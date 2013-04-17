@@ -20,6 +20,7 @@ exports.repeat = function(config) {
 		tmp.push('02-03-04-06-08-10-11-12-14-15-17-18-23-24-25');
 		tmp.push('02-03-05-06-08-09-10-11-12-14-15-17-18-19-23');
 		tmp.push('02-04-05-06-09-10-12-13-15-16-18-19-20-23-24');
+		tmp.push('01-03-06-09-10-11-12-14-18-20-21-22-23-24-25');	
 
 		tmp.sort();
 		this.isExist(tmp);
@@ -47,9 +48,11 @@ exports.repeat = function(config) {
 		var $this = this;
 		new config.cron('*/1 * * * * *', function(){
 		    config.client.lpop('lotofacil-fila-repeat', function(err, d) {
+		    	if(err) console.err('[ERRO] ao ler a chave (lotofacil-fila-repeat) redis');
 				if(d){
-					//console.log('consumindo file person '+d)
-					$this.repeticao($this.mapResult);
+					var _objD = JSON.parse(d);					
+					$this.repeticao(_objD);
+					console.log('consumindo fila (lotofacil-repeat) redis');
 					config.client.set('lotofacil-repeat', JSON.stringify($this.repeticoes));
 				}
 			});
