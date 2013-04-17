@@ -6,9 +6,7 @@ exports.loadFile = function(config) {
 
 	this.downloadFile = function() {
 		var d = new download();
-		d.go();
-		var z = new zip();
-		z.go();
+		d.go();		
 	};
 
 	this.carregar = function(data){
@@ -67,6 +65,7 @@ exports.loadFile = function(config) {
 		//lança objeto na file lotofacil-fila-repeat do redis	
 		config.client.lpush('lotofacil-fila-repeat', JSON.stringify(mapResult));
 		config.client.lpush('lotofacil-fila-frequencia', JSON.stringify(mapResult));
+		config.client.lpush('lotofacil-fila-parimpar', JSON.stringify(mapResult));
 		return mapResult;
 	};
 };
