@@ -16,6 +16,7 @@
     "express": "",
     "stylus" : "*",
     "jquery" : "",
+    "adm-zip" : "",
     "node-syslog" : "*"
   },
   "engines": {
