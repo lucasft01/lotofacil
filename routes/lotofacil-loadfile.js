@@ -57,6 +57,7 @@ exports.loadFile = function(config) {
 
 		//lança objeto na file lotofacil-fila-repeat do redis	
 		config.client.lpush('lotofacil-fila-repeat', JSON.stringify(mapResult));
+		config.client.lpush('lotofacil-fila-frequencia', JSON.stringify(mapResult));
 		return mapResult;
 	};
 };
