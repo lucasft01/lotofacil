@@ -1,6 +1,15 @@
 var $ = require('jquery');
+var download = require('./lotofacil-download.js').download;
+var zip = require('./lotofacil-zip.js').zip;
 
 exports.loadFile = function(config) {
+
+	this.downloadFile = function() {
+		var d = new download();
+		d.go();
+		var z = new zip();
+		z.go();
+	};
 
 	this.carregar = function(data){
 		var rows = $(data).find('table').find('tr');	

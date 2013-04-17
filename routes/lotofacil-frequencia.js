@@ -4,7 +4,6 @@ exports.frequencia = function(config) {
 
 	this.frequencia = function(_mapResult){
 		for(var i in _mapResult){			
-			console.log(_mapResult[i]);
 			for(var ii in _mapResult[i].orderBol){
 				config.client.incr('lotofacil-frequencia-n'+_mapResult[i].orderBol[ii]);
 			}

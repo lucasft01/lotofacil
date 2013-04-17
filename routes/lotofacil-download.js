@@ -4,7 +4,7 @@ var url = require('url');
 
 exports.download = function() {
 	this.file_url = 'http://www1.caixa.gov.br/loterias/_arquivos/loterias/D_lotfac.zip';
-	this.file = fs.createWriteStream("LOTOFACIL.zip");
+	this.file = fs.createWriteStream("tmp/LOTOFACIL.zip");
 
 	this.options = {
 	    host: url.parse(this.file_url).host,
