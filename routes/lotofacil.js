@@ -7,6 +7,7 @@ var parimpar = require('./lotofacil-parimpar.js').parimpar;
 var frequenciadupla = require('./lotofacil-frequencia-dupla.js').frequenciadupla;
 var quintanteH = require('./lotofacil-quintante-h.js').quintanteH;
 var quintanteV = require('./lotofacil-quintante-v.js').quintanteV;
+var frequenciatripla = require('./lotofacil-frequencia-tripla.js').frequenciatripla;
 
 var redis = require("redis"),
     client = redis.createClient(),
@@ -27,6 +28,7 @@ var _objParimpar = new parimpar(config);
 var _objFrequenciadupla = new frequenciadupla(config);
 var _objQuintanteH = new quintanteH(config);
 var _objQuintanteV = new quintanteV(config);
+var _objFrequenciatripla = new frequenciatripla(config);
 
 //inicia escuta de fila redis
 
@@ -37,6 +39,7 @@ _objParimpar.cron();
 _objFrequenciadupla.cron();
 _objQuintanteH.cron();
 _objQuintanteV.cron();
+_objFrequenciatripla.cron();
 
 exports.readFSLotoFacil = function (req, res) { 
 	client.flushdb();
