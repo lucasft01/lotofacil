@@ -66,6 +66,7 @@ exports.loadFile = function(config) {
 		config.client.lpush('lotofacil-fila-repeat', JSON.stringify(mapResult));
 		config.client.lpush('lotofacil-fila-frequencia', JSON.stringify(mapResult));
 		config.client.lpush('lotofacil-fila-parimpar', JSON.stringify(mapResult));
+		config.client.lpush('lotofacil-fila-frequenciadupla', JSON.stringify(mapResult));
 		return mapResult;
 	};
 };
