@@ -38,7 +38,7 @@ app.get('/partials/:name', routes.partials);
 // JSON API
 
 app.get('/api/name', api.name);
-app.get('/api/teste', lotofacil.readFSLotoFacil);
+app.get('/api/readFSLotoFacil', lotofacil.readFSLotoFacil);
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);

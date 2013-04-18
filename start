@@ -1,4 +1,4 @@
 npm install
 sublime & 
 npm start &
-firefox http://localhost:3000/api/teste &
+firefox http://localhost:3000/api/readFSLotoFacil &
