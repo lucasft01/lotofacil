@@ -17,11 +17,13 @@ exports.frequencia = function(config) {
 		    config.client.lpop('lotofacil-fila-frequencia', function(err, d) {
 		    	if(err) console.err('[ERRO] ao ler a chave (lotofacil-fila-frequencia) redis');
 				if(d){
-					var time = new Date().getTime();
-					var _objD = JSON.parse(d);					
-					console.log('consumindo fila (lotofacil-frequencia) redis');
-					$this.frequencia(_objD);
-					console.log('(lotofacil-frequencia) processado em .......... '+(new Date().getTime()-time)/1000+'s');
+					config.client.get(d, function (err, reply) {
+						var time = new Date().getTime();
+						var _objD = JSON.parse(reply.toString());					
+						console.log('consumindo fila (lotofacil-frequencia) redis');
+						$this.frequencia(_objD);
+						console.log('(lotofacil-frequencia) processado em .......... '+(new Date().getTime()-time)/1000+'s');
+					});
 				}
 			});
 		}, null, true, "");

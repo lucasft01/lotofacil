@@ -62,15 +62,17 @@ exports.loadFile = function(config) {
 			mapResult.push(obj);		
 		}
 
-		//lança objeto na file lotofacil-fila-repeat do redis	
-		config.client.lpush('lotofacil-fila-repeat', JSON.stringify(mapResult));
-		config.client.lpush('lotofacil-fila-frequencia', JSON.stringify(mapResult));
-		config.client.lpush('lotofacil-fila-parimpar', JSON.stringify(mapResult));
-		config.client.lpush('lotofacil-fila-frequenciadupla', JSON.stringify(mapResult));
-		config.client.lpush('lotofacil-fila-quintanteH', JSON.stringify(mapResult));
-		config.client.lpush('lotofacil-fila-quintanteV', JSON.stringify(mapResult));
-		config.client.lpush('lotofacil-fila-frequenciatripla', JSON.stringify(mapResult));
-		config.client.lpush('lotofacil-fila-frequenciatetra', JSON.stringify(mapResult));
+		//lança objeto na file lotofacil-fila-repeat do redis
+		var keyRedisMapResult = 'lotofacil-map-result';
+		config.client.set(  keyRedisMapResult, JSON.stringify(mapResult));
+		config.client.lpush('lotofacil-fila-repeat', keyRedisMapResult);
+		config.client.lpush('lotofacil-fila-frequencia', keyRedisMapResult);
+		config.client.lpush('lotofacil-fila-parimpar', keyRedisMapResult);
+		config.client.lpush('lotofacil-fila-frequenciadupla', keyRedisMapResult);
+		config.client.lpush('lotofacil-fila-quintanteH', keyRedisMapResult);
+		config.client.lpush('lotofacil-fila-quintanteV', keyRedisMapResult);
+		config.client.lpush('lotofacil-fila-frequenciatripla', keyRedisMapResult);
+		config.client.lpush('lotofacil-fila-frequenciatetra', keyRedisMapResult);
 		
 		return mapResult;
 	};
