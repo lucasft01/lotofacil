@@ -30,9 +30,11 @@ exports.frequenciatetra = function(config) {
 		    config.client.lpop('lotofacil-fila-frequenciatetra', function(err, d) {
 		    	if(err) console.err('[ERRO] ao ler a chave (lotofacil-fila-frequenciatetra) redis');
 				if(d){
+					var time = new Date().getTime();
 					var _objD = JSON.parse(d);
+					console.log('consumindo fila (lotofacil-frequenciatetra) redis');
 					$this.frequenciatetra(_objD);
-					console.log('consumindo fila (lotofacil-frequenciatetra) redis');					
+					console.log('(lotofacil-frequenciatetra) processado em .......... '+(new Date().getTime()-time)/1000+'s');
 				}
 			});
 		}, null, true, "");

@@ -27,9 +27,11 @@ exports.quintanteV = function(config) {
 		    config.client.lpop('lotofacil-fila-quintanteV', function(err, d) {
 		    	if(err) console.err('[ERRO] ao ler a chave (lotofacil-fila-quintanteV) redis');
 				if(d){
+					var time = new Date().getTime();
 					var _objD = JSON.parse(d);					
+					console.log('consumindo fila (lotofacil-quintanteV) redis');
 					$this.quintanteV(_objD);
-					console.log('consumindo fila (lotofacil-quintanteV) redis');					
+					console.log('(lotofacil-quintanteV) processado em .......... '+(new Date().getTime()-time)/1000+'s');
 				}
 			});
 		}, null, true, "");

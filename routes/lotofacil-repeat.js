@@ -47,9 +47,11 @@ exports.repeat = function(config) {
 		    config.client.lpop('lotofacil-fila-repeat', function(err, d) {
 		    	if(err) console.err('[ERRO] ao ler a chave (lotofacil-fila-repeat) redis');
 				if(d){
+					var time = new Date().getTime();
 					var _objD = JSON.parse(d);					
+					console.log('consumindo fila (lotofacil-repeat) redis');
 					$this.repeticao(_objD);
-					console.log('consumindo fila (lotofacil-repeat) redis');					
+					console.log('(lotofacil-repeat) processado em .......... '+(new Date().getTime()-time)/1000+'s');
 				}
 			});
 		}, null, true, "");
