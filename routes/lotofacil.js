@@ -17,6 +17,7 @@ var redis = require("redis"),
 var lotofacil = {};
 var config = {};
 config.client = client;
+config.cronTime = '*/10 * * * * *';
 config.cron = cron;
 
 var _objRepeat = new repeat(config);

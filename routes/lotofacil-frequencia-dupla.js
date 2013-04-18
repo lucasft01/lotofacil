@@ -21,7 +21,7 @@ exports.frequenciadupla = function(config) {
 
 	this.cron = function() {
 		var $this = this;
-		new config.cron('*/1 * * * * *', function(){
+		new config.cron(config.cronTime, function(){
 		    config.client.lpop('lotofacil-fila-frequenciadupla', function(err, d) {
 		    	if(err) console.err('[ERRO] ao ler a chave (lotofacil-fila-frequenciadupla) redis');
 				if(d){

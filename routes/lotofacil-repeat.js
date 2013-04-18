@@ -16,11 +16,7 @@ exports.repeat = function(config) {
 		tmp.push('01-02-04-06-09-10-12-13-14-16-17-18-19-22-25');
 		tmp.push('02-03-05-06-08-09-10-11-12-14-15-17-18-19-23');
 
-		tmp.push('02-03-05-06-08-09-10-11-12-14-15-17-18-19-23');
-		tmp.push('02-03-04-06-08-10-11-12-14-15-17-18-23-24-25');
-		tmp.push('02-03-05-06-08-09-10-11-12-14-15-17-18-19-23');
-		tmp.push('02-04-05-06-09-10-12-13-15-16-18-19-20-23-24');
-		tmp.push('01-03-06-09-10-11-12-14-18-20-21-22-23-24-25');	
+		tmp.push('01-02-03-04-05-06-08-09-11-15-16-20-22-23-24');
 
 		tmp.sort();
 		this.isExist(tmp);
@@ -37,23 +33,23 @@ exports.repeat = function(config) {
 	        counts[item] = counts[item] >= 1 ? counts[item] + 1 : 1; 
 	    } 
 	    for (var item in counts) { 
-	        if(counts[item] > 1) 
-	        out.push(item); 
-	    } 	    
-	    this.repeticoes = out; 
+	        if(counts[item] > 1){ 
+		        out.push(item); 
+		    	config.client.incrby('lotofacil-repeat-'+item, (counts[item]-1));
+	    	}
+	    }     
 
 	};
 
 	this.cron = function() {
 		var $this = this;
-		new config.cron('*/1 * * * * *', function(){
+		new config.cron(config.cronTime, function(){
 		    config.client.lpop('lotofacil-fila-repeat', function(err, d) {
 		    	if(err) console.err('[ERRO] ao ler a chave (lotofacil-fila-repeat) redis');
 				if(d){
 					var _objD = JSON.parse(d);					
 					$this.repeticao(_objD);
-					console.log('consumindo fila (lotofacil-repeat) redis');
-					config.client.set('lotofacil-repeat', JSON.stringify($this.repeticoes));
+					console.log('consumindo fila (lotofacil-repeat) redis');					
 				}
 			});
 		}, null, true, "");
