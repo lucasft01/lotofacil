@@ -70,6 +70,7 @@ exports.loadFile = function(config) {
 		config.client.lpush('lotofacil-fila-quintanteH', JSON.stringify(mapResult));
 		config.client.lpush('lotofacil-fila-quintanteV', JSON.stringify(mapResult));
 		config.client.lpush('lotofacil-fila-frequenciatripla', JSON.stringify(mapResult));
+		config.client.lpush('lotofacil-fila-frequenciatetra', JSON.stringify(mapResult));
 		
 		return mapResult;
 	};
