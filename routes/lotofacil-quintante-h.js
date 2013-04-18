@@ -13,7 +13,7 @@ exports.quintanteH = function(config) {
 					config.client.incr('lotofacil-quintanteH-q-3');
 				}else if(_mapResult[i].orderBol[ii] >= 16 && _mapResult[i].orderBol[ii] <= 20){
 					config.client.incr('lotofacil-quintanteH-q-4');
-				}else{
+				}else if(_mapResult[i].orderBol[ii] >= 21 && _mapResult[i].orderBol[ii] <= 25){
 					config.client.incr('lotofacil-quintanteH-q-5');
 				}
 			}

@@ -13,7 +13,7 @@ exports.quintanteV = function(config) {
 					config.client.incr('lotofacil-quintanteV-q-3');
 				}else if(_mapResult[i].orderBol[ii] == 4 || _mapResult[i].orderBol[ii] == 9 || _mapResult[i].orderBol[ii] == 14 || _mapResult[i].orderBol[ii] == 19 || _mapResult[i].orderBol[ii] == 24){
 					config.client.incr('lotofacil-quintanteV-q-4');
-				}else{
+				}else if(_mapResult[i].orderBol[ii] == 5 || _mapResult[i].orderBol[ii] == 10 || _mapResult[i].orderBol[ii] == 15 || _mapResult[i].orderBol[ii] == 20 || _mapResult[i].orderBol[ii] == 25){
 					config.client.incr('lotofacil-quintanteV-q-5');
 				}
 			}
