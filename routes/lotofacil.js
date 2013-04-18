@@ -27,7 +27,7 @@ _objFrequencia.cron();
 _objParimpar.cron();
 
 exports.readFSLotoFacil = function (req, res) { 
-	_objLoadfile.downloadFile();
+	//_objLoadfile.downloadFile();
 	var data = fs.readFileSync('lotofacil/D_LOTFAC.HTM');		
 	res.json(_objLoadfile.carregar(data.toString()));
 };

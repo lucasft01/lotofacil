@@ -1,5 +1,4 @@
 
-
 exports.parimpar = function(config) {
 
 	this.parimpar = function(_mapResult){
