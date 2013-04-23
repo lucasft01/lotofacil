@@ -14,7 +14,7 @@ exports.frequenciatetra = function(config) {
 					for(var diii = 2 ; diii < 15 ; diii++){
 						for(var diiii = 3 ; diiii < 15 ; diiii++){
 							if(dii > di && diii > dii && diiii > diii){
-								config.client.incr('lotofacil-frequenciatetra-'+_mapResult[i].orderBol[di]+'-'+_mapResult[i].orderBol[dii]+'-'+_mapResult[i].orderBol[diii]+'-'+_mapResult[i].orderBol[diiii]);
+								config.client.zincrby('lotofacil-frequenciatetra', 1, 'lotofacil-frequenciatetra-'+_mapResult[i].orderBol[di]+'-'+_mapResult[i].orderBol[dii]+'-'+_mapResult[i].orderBol[diii]+'-'+_mapResult[i].orderBol[diiii]);								
 							}
 						}
 					}

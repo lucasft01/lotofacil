@@ -12,7 +12,7 @@ exports.parimpar = function(config) {
 					impar++;
 				}
 			}
-			config.client.incr('lotofacil-parimpar-p'+par+'-i'+impar);
+			config.client.zincrby('lotofacil-parimpar-p', 1, 'lotofacil-parimpar-p'+par+'-i'+impar);
 		}		
 	};
 

@@ -35,7 +35,7 @@ exports.repeat = function(config) {
 	    for (var item in counts) { 
 	        if(counts[item] > 1){ 
 		        out.push(item); 
-		    	config.client.incrby('lotofacil-repeat-'+item, (counts[item]-1));
+		    	config.client.zincrby('lotofacil-repeat', (counts[item]-1), 'lotofacil-repeat-'+item);
 	    	}
 	    }     
 

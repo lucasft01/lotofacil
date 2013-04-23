@@ -6,15 +6,15 @@ exports.quintanteH = function(config) {
 		for(var i in _mapResult){			
 			for(var ii in _mapResult[i].orderBol){
 				if(_mapResult[i].orderBol[ii] >= 1 && _mapResult[i].orderBol[ii] <= 5){
-					config.client.incr('lotofacil-quintanteH-q-1');
+					config.client.zincrby('lotofacil-quintanteH-q', 1, 'lotofacil-quintanteH-q-1');
 				}else if(_mapResult[i].orderBol[ii] >= 6 && _mapResult[i].orderBol[ii] <= 10){
-					config.client.incr('lotofacil-quintanteH-q-2');
+					config.client.zincrby('lotofacil-quintanteH-q', 1, 'lotofacil-quintanteH-q-2');
 				}else if(_mapResult[i].orderBol[ii] >= 11 && _mapResult[i].orderBol[ii] <= 15){
-					config.client.incr('lotofacil-quintanteH-q-3');
+					config.client.zincrby('lotofacil-quintanteH-q', 1, 'lotofacil-quintanteH-q-3');
 				}else if(_mapResult[i].orderBol[ii] >= 16 && _mapResult[i].orderBol[ii] <= 20){
-					config.client.incr('lotofacil-quintanteH-q-4');
+					config.client.zincrby('lotofacil-quintanteH-q', 1, 'lotofacil-quintanteH-q-4');
 				}else if(_mapResult[i].orderBol[ii] >= 21 && _mapResult[i].orderBol[ii] <= 25){
-					config.client.incr('lotofacil-quintanteH-q-5');
+					config.client.zincrby('lotofacil-quintanteH-q', 1, 'lotofacil-quintanteH-q-5');
 				}
 			}
 		}		

@@ -13,7 +13,7 @@ exports.frequenciatripla = function(config) {
 				for(var dii = 1 ; dii < 15 ; dii++){
 					for(var diii = 2 ; diii < 15 ; diii++){
 						if(dii > di && diii > dii){
-							config.client.incr('lotofacil-frequenciatripla-'+_mapResult[i].orderBol[di]+'-'+_mapResult[i].orderBol[dii]+'-'+_mapResult[i].orderBol[diii]);
+							config.client.zincrby('lotofacil-frequenciatripla', 1, 'lotofacil-frequenciatripla-'+_mapResult[i].orderBol[di]+'-'+_mapResult[i].orderBol[dii]+'-'+_mapResult[i].orderBol[diii]);
 						}
 					}
 				}	

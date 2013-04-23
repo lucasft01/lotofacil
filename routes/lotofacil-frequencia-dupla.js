@@ -10,8 +10,8 @@ exports.frequenciadupla = function(config) {
 			}			
 			for(var di = 0 ; di < 14 ; di++){
 				for(var dii = 1 ; dii < 15 ; dii++){
-					if(dii > di){						
-						config.client.incr('lotofacil-frequenciadupla-'+_mapResult[i].orderBol[di]+'-'+_mapResult[i].orderBol[dii]);
+					if(dii > di){
+						config.client.zincrby('lotofacil-frequenciadupla', 1, 'lotofacil-frequenciadupla-'+_mapResult[i].orderBol[di]+'-'+_mapResult[i].orderBol[dii]);
 					}
 				}	
 			}

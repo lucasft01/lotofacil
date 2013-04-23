@@ -6,15 +6,15 @@ exports.quintanteV = function(config) {
 		for(var i in _mapResult){			
 			for(var ii in _mapResult[i].orderBol){
 				if(_mapResult[i].orderBol[ii] == 1 || _mapResult[i].orderBol[ii] == 6 || _mapResult[i].orderBol[ii] == 11 || _mapResult[i].orderBol[ii] == 16 || _mapResult[i].orderBol[ii] == 21){
-					config.client.incr('lotofacil-quintanteV-q-1');
+					config.client.zincrby('lotofacil-quintanteV-q', 1, 'lotofacil-quintanteV-q-1');
 				}else if(_mapResult[i].orderBol[ii] == 2 || _mapResult[i].orderBol[ii] == 7 || _mapResult[i].orderBol[ii] == 12 || _mapResult[i].orderBol[ii] == 17 || _mapResult[i].orderBol[ii] == 22){
-					config.client.incr('lotofacil-quintanteV-q-2');
+					config.client.zincrby('lotofacil-quintanteV-q', 1, 'lotofacil-quintanteV-q-2');
 				}else if(_mapResult[i].orderBol[ii] == 3 || _mapResult[i].orderBol[ii] == 8 || _mapResult[i].orderBol[ii] == 13 || _mapResult[i].orderBol[ii] == 18 || _mapResult[i].orderBol[ii] == 23){
-					config.client.incr('lotofacil-quintanteV-q-3');
+					config.client.zincrby('lotofacil-quintanteV-q', 1, 'lotofacil-quintanteV-q-3');
 				}else if(_mapResult[i].orderBol[ii] == 4 || _mapResult[i].orderBol[ii] == 9 || _mapResult[i].orderBol[ii] == 14 || _mapResult[i].orderBol[ii] == 19 || _mapResult[i].orderBol[ii] == 24){
-					config.client.incr('lotofacil-quintanteV-q-4');
+					config.client.zincrby('lotofacil-quintanteV-q', 1, 'lotofacil-quintanteV-q-4');
 				}else if(_mapResult[i].orderBol[ii] == 5 || _mapResult[i].orderBol[ii] == 10 || _mapResult[i].orderBol[ii] == 15 || _mapResult[i].orderBol[ii] == 20 || _mapResult[i].orderBol[ii] == 25){
-					config.client.incr('lotofacil-quintanteV-q-5');
+					config.client.zincrby('lotofacil-quintanteV-q', 1, 'lotofacil-quintanteV-q-5');
 				}
 			}
 		}		
@@ -23,7 +23,7 @@ exports.quintanteV = function(config) {
 
 	this.cron = function() {
 		var $this = this;
-		new config.cron(config.cronTime, function(){
+		new config.cron(config.cronTime, function(){			
 		    config.client.lpop('lotofacil-fila-quintanteV', function(err, d) {
 		    	if(err) console.err('[ERRO] ao ler a chave (lotofacil-fila-quintanteV) redis');
 				if(d){

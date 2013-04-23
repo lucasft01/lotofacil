@@ -5,7 +5,7 @@ exports.frequencia = function(config) {
 	this.frequencia = function(_mapResult){
 		for(var i in _mapResult){			
 			for(var ii in _mapResult[i].orderBol){
-				config.client.incr('lotofacil-frequencia-n'+_mapResult[i].orderBol[ii]);
+				config.client.zincrby('lotofacil-frequencia-n', 1, 'lotofacil-frequencia-n'+_mapResult[i].orderBol[ii]);
 			}
 		}		
 	};
